@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+    <Authors>fengxg</Authors>
+    <Description>a tiny socket server</Description>
+    <Copyright>open&amp;free</Copyright>
+    <PackageProjectUrl>https://github.com/moneyfengcn/TinySocket</PackageProjectUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>TinySocket</PackageId>
+    <Product>TinySocket</Product>
+    <PackageReleaseNotes></PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Memory" Version="4.5.5" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,96 @@
+﻿<link href="~/css/context.standalone.css" rel="stylesheet" />
+<script src="~/js/context.js" asp-append-version="true"></script>
+
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    实时监控
+                </h2>
+            </div>
+            <div class="body">
+                <style>
+                    .mapContainer {
+                        position: relative;
+                        width: 100%;
+                        height: 100%;
+                    }
+                </style>
+
+                <div class="gmap">
+                    <div id="mapContainer" class="mapContainer"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    App.InitMap();
+
+    var connection;
+    function init_socket() {
+        connection = new signalR.HubConnectionBuilder()
+            .withUrl("/gpsHub")
+            .withAutomaticReconnect()
+            .build();
+
+        connection.on("On_GpsLocation", (devceId, name, lat, lng, angle, speed, time, pack) => {
+            //debugger;
+            App.MoveMarker(devceId, name, lat, lng, angle, speed, time);
+            //devceId, lat, lng, angle, '<center>' + name + '<BR/>速度:' + speed + '<BR/>' + time + '</center>');
+            console.log('On_GpsLocation  devceId:' + devceId + ' -> ' + pack);
+        });
+
+        connection.on("Heartbeat", (value) => {
+            console.info("收到服务器心跳回复");
+        });
+
+        function start() {
+            try {
+                connection.start();
+                console.log("SignalR Connected.");
+                //启动心跳
+                setTimeout(time_heartbeat, 30 * 1000);
+            } catch (err) {
+                console.log(err);
+                setTimeout(start, 2000);
+            }
+        };
+
+        function time_heartbeat() {
+            try {
+                connection.invoke("Heartbeat", 1)
+                setTimeout(time_heartbeat, 30 * 1000);
+            } catch (err) {
+                console.info(err);
+            }
+        }
+
+        connection.onclose(start);
+
+        // Start the connection.
+        start();
+
+        function getLastPosition() {
+            $.get("/api/test/LastPosition", function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    var obj = data[i];
+                    App.MoveMarker(obj.device.deviceId, obj.device.deviceName, obj.lat, obj.lng, obj.angle, obj.speed, obj.gpsTime)
+                }
+            });
+        }
+
+        setTimeout(getLastPosition, 1000);
+    }
+    init_socket();
+
+    App.InitMapContextMenu();
+
+</script>

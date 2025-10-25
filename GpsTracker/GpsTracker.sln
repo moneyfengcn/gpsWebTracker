@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GpsTracker", "GpsTracker.csproj", "{A47762D6-3948-480F-8B45-5172390CF84D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway", "..\Gateway\Gateway.csproj", "{583C3E85-C1B7-4ADF-A9E2-06381CE75692}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinySocketServer", "..\TinySocketServer\TinySocketServer.csproj", "{6DCBD945-014B-433A-B985-12FF70B6648E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GpsTrackerMQ", "..\GpsTrackerMQ\GpsTrackerMQ.csproj", "{2CC10EB6-2AD4-4717-B15E-6ADAFB8E94A0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaveDB", "..\SaveDB\SaveDB.csproj", "{EB087BE6-E50A-4520-92E9-5ADB27BEF73D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Protocol", "..\Protocol\Protocol.csproj", "{335F073E-2004-48D2-8C12-12DB4D1F618F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPSTracker.DAL", "..\GPSTracker.DAL\GPSTracker.DAL.csproj", "{C5FCA6CD-9147-48D2-A350-12915676D309}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A47762D6-3948-480F-8B45-5172390CF84D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A47762D6-3948-480F-8B45-5172390CF84D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A47762D6-3948-480F-8B45-5172390CF84D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A47762D6-3948-480F-8B45-5172390CF84D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{583C3E85-C1B7-4ADF-A9E2-06381CE75692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{583C3E85-C1B7-4ADF-A9E2-06381CE75692}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{583C3E85-C1B7-4ADF-A9E2-06381CE75692}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{583C3E85-C1B7-4ADF-A9E2-06381CE75692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DCBD945-014B-433A-B985-12FF70B6648E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DCBD945-014B-433A-B985-12FF70B6648E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DCBD945-014B-433A-B985-12FF70B6648E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DCBD945-014B-433A-B985-12FF70B6648E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CC10EB6-2AD4-4717-B15E-6ADAFB8E94A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CC10EB6-2AD4-4717-B15E-6ADAFB8E94A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CC10EB6-2AD4-4717-B15E-6ADAFB8E94A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CC10EB6-2AD4-4717-B15E-6ADAFB8E94A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB087BE6-E50A-4520-92E9-5ADB27BEF73D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB087BE6-E50A-4520-92E9-5ADB27BEF73D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB087BE6-E50A-4520-92E9-5ADB27BEF73D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB087BE6-E50A-4520-92E9-5ADB27BEF73D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{335F073E-2004-48D2-8C12-12DB4D1F618F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{335F073E-2004-48D2-8C12-12DB4D1F618F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{335F073E-2004-48D2-8C12-12DB4D1F618F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{335F073E-2004-48D2-8C12-12DB4D1F618F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5FCA6CD-9147-48D2-A350-12915676D309}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5FCA6CD-9147-48D2-A350-12915676D309}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5FCA6CD-9147-48D2-A350-12915676D309}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5FCA6CD-9147-48D2-A350-12915676D309}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7866159-11DE-4183-B5A2-31E73B09ADE0}
+	EndGlobalSection
+EndGlobal

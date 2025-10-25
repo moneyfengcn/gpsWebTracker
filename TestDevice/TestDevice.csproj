@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <UserSecretsId>55887c06-b447-4c7e-9d41-6353f322aec4</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="5.0.2" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.0.2" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GpsTrackerMQ\GpsTrackerMQ.csproj" />
+  </ItemGroup>
+
+</Project>

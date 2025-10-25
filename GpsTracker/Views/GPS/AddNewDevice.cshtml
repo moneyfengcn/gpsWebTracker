@@ -1,0 +1,100 @@
+﻿
+
+@using GpsTracker.Infrastructure.Razor
+@using GpsTracker.Models.GPS
+@model GpsDevicesModel
+
+@{
+    var isAddNew = Model == null;
+
+    var TITLE = isAddNew ? "添加新设备" : "修改参数设备";
+
+    var POST_Action = isAddNew ? "AddNew_Device" : "Edit_Device";
+}
+
+<div class="modal fade" id="newDeviceDlalog" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">@TITLE</h4>
+            </div>
+
+            @using (Html.BeginForm(POST_Action, "GPS", FormMethod.Post, new { id = "AddOrEdit_Device" }))
+            {
+                <div class="modal-body">
+                    <label for="DeviceId">设备序列号</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            @if (isAddNew)
+                            {
+                                @Html.TextBoxFor(m => m.DeviceId, new { placeholder = "设备序列号", @class = "form-control" })
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.DeviceId, new { placeholder = "设备序列号", @class = "form-control", @readonly = "readonly" })
+                            }
+
+                        </div>
+                    </div>
+
+                    <label for="DeviceName">设备名称</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            @Html.TextBoxFor(m => m.DeviceName, new { placeholder = "设备名称", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <label for="DeviceType">设备类型</label>
+                    <div class="form-group">
+                        <div class="form-line">
+
+                            <select id="DeviceType" name="DeviceType" class="form-control" placeholder="设备类型">
+                                <option value="部标设备">部标设备</option>
+                                <option value="BSJ设备">BSJ设备</option>
+                                <option value="Android设备">Android设备</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label for="DeviceType">备注</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            @Html.TextAreaFor(m => m.Remarks, new { placeholder = "备注", @class = "form-control", @rows = "3" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn bg-pink waves-effect">保存</button>
+                    <button type="button" class="btn btn-warning waves-effect" data-dismiss="modal">取消</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    //拦截表单submit
+    $('#AddOrEdit_Device').off().on({
+        submit: function (e) {
+
+            e.preventDefault();
+
+            $('#AddOrEdit_Device').ajaxSubmit({
+                success: function (data, statusText, xhr, $form) {
+                    if (!data.state) {
+                        swal("提示", data.msg);
+                    } else {
+                        swal("提示", "操作成功。");
+                        debugger;
+                        $("#newDeviceDlalog").modal("hide");
+                        //重新请求列表
+                        $("#GpsDevicesList").submit();
+                    }
+                },
+                error: function (XmlHttpRequest, textStatus, errorThrown) {
+                    swal("提示", "网络不给力，请稍后再试！");
+                }
+            });
+        }
+    });
+</script>

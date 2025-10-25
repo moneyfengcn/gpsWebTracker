@@ -1,0 +1,58 @@
+﻿@using GpsTracker.Infrastructure.Razor
+@using GpsTracker.Models.GPS
+@using GPSTracker.DAL.Entitys
+@model Query<GpsDeviceModel, GpsDevicesParams>
+
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    设备管理
+                </h2>
+
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    @using (Html.PageView("Devices", "GPS", "GpsDevicesList", "GpsDevicesListContainer", "List_Partial", Model))
+                    {
+                        <div class="card">
+                            <div class="body">
+                                <div class="form-inline">
+                                    <label>设备序列号：</label> @Html.TextBoxFor(m => m.Params.DeviceId, new { placeholder = "设备序列号" })
+                                    <label>设备类型：</label>@Html.TextBoxFor(m => m.Params.DeviceType, new { placeholder = "设备类型" })
+
+                                    <label>设备名称：</label> @Html.TextBoxFor(m => m.Params.DeviceName, new { placeholder = "设备名称" })
+                                    <button type="reset" class="btn btn-default waves-effect"><i class="fa fa-undo"></i> 重置</button>
+                                    <button type="submit" class="btn btn-success waves-effect"><i class="fa fa-search"></i> 查询</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="thedialog"></div>
+
+
+<script>
+    function ShowDialogModel(devId) {
+
+        var url = "/Gps/AddNewDevice/" + devId;
+
+        //ajax加载
+        $.get(url, function (result) {
+            $("#thedialog").html(result);
+            //显示
+            $('#newDeviceDlalog').modal('show');
+        });
+    }
+
+
+</script>

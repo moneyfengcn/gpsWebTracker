@@ -1,0 +1,88 @@
+﻿@using GPSTracker.DAL.Entitys
+@using GpsTracker.Infrastructure.Razor
+@using GpsTracker.Models.GPS
+@model Query< GpsDeviceModel, GpsDevicesParams>
+
+<div class="form-inline">
+    <button type="button" class="btn btn-success" title="新建" id="btnAdd"><i class="fa fa-file-o"></i> 添加新设备</button>
+</div>
+<br />
+<table id="myTable" class="table table-bordered table-striped table-hover dataTable">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>设备序列号</th>
+            <th>名称</th>
+            <th>设备类型</th>
+            <th>最后上线时间</th>
+            <th>创建日期</th>
+            <th>备注</th>
+            <th width="150px">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var index = 0;
+        }
+        @foreach (var item in Model.ItemList)
+        {
+            <tr>
+                <td>@Model.RowNumber(++index)</td>
+                <td>@item.DeviceId</td>
+                <td>@item.DeviceName</td>
+                <td>@item.DeviceType</td>
+                <td>@item.GpsTime?.ToString("yyyy-MM-dd hh:mm:ss")</td>
+                <td>@item.CreateDate.ToString("yyyy-MM-dd hh:mm:ss")</td>
+                <td>@item.Remarks</td>
+                <td>
+                    <button itemId="@item.DeviceId" type="button" class="myBtnEdit btn bg-info btn-xs">编辑</button>
+                    <button itemId="@item.DeviceId" itemName="@item.DeviceName" type="button" class="myBtnDelete btn bg-danger btn-xs">删除</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@Html.GridPager(Model)
+
+
+<script>
+
+
+    $("#btnAdd").on("click", function () {
+        ShowDialogModel('');
+    });
+    $(".myBtnEdit").on("click", function () {
+        var id = $(this).attr("itemId");
+        ShowDialogModel(id);
+    });
+
+    $(".myBtnDelete").on("click", function () {
+        var id = $(this).attr("itemId");
+        var name = $(this).attr("itemName");
+
+        swal({
+            title: "删除设备?",
+            text: "确定需要删除设备：" + name + " 吗?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "是的, 我要删除!",
+            closeOnConfirm: false
+        }, function () {
+            $.get("/gps/DeleteDevice/" + id, function (result) {
+                if (result.state != 1) {
+                    swal("提示", result.msg);
+                }
+                else {
+                    //重新请求列表
+                    $("#GpsDevicesList").submit();
+                }
+            });
+        });
+
+    });
+
+
+</script>

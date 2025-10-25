@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\项目源代码\gpsWeb\GPSTracker\GpsTracker\bin\Release\net6.0\publish\</_PublishTargetUrl>
+    <History>True|2022-11-08T14:00:55.4123116Z;True|2022-11-08T21:52:21.9936842+08:00;True|2022-11-08T21:39:57.7596668+08:00;True|2022-10-27T23:32:31.5081921+08:00;True|2022-09-28T22:07:36.2596580+08:00;True|2022-09-04T10:25:51.1569483+08:00;True|2022-08-29T20:02:11.2721026+08:00;True|2022-08-28T23:01:01.0372968+08:00;True|2022-08-28T13:48:42.0466642+08:00;True|2022-08-28T13:21:51.0932699+08:00;True|2022-08-27T23:23:41.8455624+08:00;True|2022-08-27T21:37:24.5430870+08:00;True|2022-08-27T21:36:38.6437459+08:00;True|2022-08-26T21:16:42.0255592+08:00;True|2022-08-26T21:15:45.7008913+08:00;True|2022-08-26T21:10:08.9222959+08:00;True|2022-01-21T23:12:32.5040339+08:00;True|2022-01-19T18:00:18.6145928+08:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

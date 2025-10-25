@@ -1,0 +1,324 @@
+﻿@using Microsoft.Extensions.Configuration;
+@using Microsoft.AspNetCore.Identity;
+@inject IConfiguration config
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <title>@config["ProductName"]</title>
+    <!-- Favicon-->
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="~/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- Waves Effect Css -->
+    <link href="~/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="~/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <link href="~/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+    <!-- Wait Me Css -->
+    <link href="~/plugins/waitme/waitMe.css" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="~/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+
+    <!-- Custom Css -->
+    <link href="~/css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="~/css/themes/all-themes.css" rel="stylesheet" />
+
+
+    @*<script src="https://webapi.amap.com/maps?v=1.4.15&key=84937cce118be97b42245c5d358f4aeb"></script>*@
+    <script src="https://webapi.amap.com/maps?v=2.0&key=84937cce118be97b42245c5d358f4aeb"></script>
+    <script src="~/js/gpsmap.js" asp-append-version="true"></script>
+    <script src="~/js/signalr.min.js"></script>
+
+    @*--------------------------------------------------------------------*@
+
+    <!-- Jquery Core Js -->
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="~/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="~/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="~/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="~/plugins/node-waves/waves.js"></script>
+
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="~/plugins/jquery-countto/jquery.countTo.js"></script>
+
+
+    <!-- SweetAlert Plugin Js -->
+    <script src="~/plugins/sweetalert/sweetalert.min.js"></script>
+
+
+    <!-- Autosize Plugin Js -->
+    <script src="~/plugins/autosize/autosize.js"></script>
+
+    <script src="~/js/jquery.form.min.js"></script>
+
+    <!-- Custom Js -->
+    <script src="~/js/admin.js"></script>
+</head>
+
+<body class="theme-red">
+
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" asp-controller="GPS" asp-action="RealMap">@config["ProductName"]</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="material-icons">brightness_7</i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="javascript:void(0);" onclick="on_changePwd();"><i class="material-icons">person</i>修改密码</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="on_SignOut();"><i class="material-icons">input</i>退出登录</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="~/images/user.png" width="48" height="48" alt="User" />
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hello @User.Identity.Name</div>
+                    <div class="email">欢迎光临</div>
+
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li>
+                        <a asp-controller="GPS" asp-action="RealMap">
+                            <i class="material-icons">home</i>
+                            <span>实时监控</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="GPS" asp-action="History">
+                            <i class="material-icons">text_fields</i>
+                            <span>历史轨迹</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="GPS" asp-action="Devices">
+                            <i class="material-icons">layers</i>
+                            <span>设备管理</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2008 - @DateTime.Now.Year <a href="javascript:void(0);">@config["ProductName"] </a>.
+                </div>
+                <div class="version">
+                    <b>   @config["CompanyName"]</b>
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+
+    </section>
+
+
+
+    <section class="content">
+
+        @RenderBody()
+
+    </section>
+
+    <div class="modal fade" id="changePwd" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="defaultModalLabel">修改密码</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form class="form-horizontal">
+                        <div class="row clearfix">
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                <label for="oldPwd">旧密码：</label>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-6 col-xs-7">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="password" id="oldPwd" class="form-control" placeholder="输入你的旧密码" required autofocus>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5 form-control-label">
+                                <label for="newPwd1">新密码：</label>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-6 col-xs-7">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="password" id="newPwd1" class="form-control" placeholder="输入你的新密码" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                <label for="newPwd2">新密码：</label>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-6 col-xs-7">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="password" id="newPwd2" class="form-control" placeholder="重复输入你的新密码" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-pink waves-effect" onclick="SaveNewPassword()">确认修改</button>
+                    <button type="button" class="btn btn-warning waves-effect" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('.menu a').each(function () {
+            if (this.href === window.location.href) {
+                $(this).parent().addClass('active');
+            }
+        });
+
+        function on_changePwd() {
+            $("#oldPwd").val("");
+            $("#newPwd1").val("");
+            $("#newPwd2").val("");
+            $('#changePwd').modal('show');
+        }
+
+        function SaveNewPassword() {
+            var oldpwd = $("#oldPwd").val();
+            var newPwd1 = $("#newPwd1").val();
+            var newPwd2 = $("#newPwd2").val();
+
+            if (oldpwd == null || oldpwd == '') {
+                swal("错误", "请输入旧密码。");
+            }
+            if (newPwd1 == null || newPwd1 == '') {
+                swal("错误", "请输入新密码。");
+            }
+            if (newPwd1 == '' || newPwd1 != newPwd2) {
+                swal("错误", "两次输入的新密码不一致。");
+            }
+
+            var obj = { oldPassword: oldpwd, newPassword: newPwd1, confirmPassword: newPwd2 };
+            debugger;
+            $.ajax({
+                url: "/Home/SaveNewPassword",
+                data: JSON.stringify(obj),
+                contentType: "application/json",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (!data.state) {
+                        swal("错误", data.msg);
+                    }
+                    else {
+                        swal("提示", "密码修改操作成功。");
+                        $('#changePwd').modal('hide');
+                    }
+                }
+            });
+
+        };
+
+        function on_SignOut() {
+            swal({
+                title: "确定需要退出?",
+                text: "注销登录后，你将需要再次输入密码才能进入平台!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "是的, 我要退出!",
+                closeOnConfirm: false
+            }, function () {
+                window.location.href = "/home/logout";
+            });
+        }
+
+        function InitGridPager(
+            formId,         //表单Id
+            divId,          //容器id
+            selectId,       //选页id
+            goPageId,       //转到第n页文本框
+            goButtonId,     //go按钮
+            pageBarId)       //分页栏(首页、上页、N页 、下页，尾页)
+        {
+
+            //分页栏(首页、上页、N页 、下页，尾页)
+            $('.gridPageNum').off().on({
+                click: function (e) {
+                    var $p = $(this).parent();
+                    if ($p.hasClass('disabled') || $p.hasClass('active')) return;
+                    $(formId + ' input[name=__pageIndex]').val($(this).attr('p'));
+                    $(formId).submit();
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
